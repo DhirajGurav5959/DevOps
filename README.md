@@ -1,1 +1,1 @@
-This repository contains codes for Docker, ELk Stack ,kubernetes , jenkins, sonarqube ,POC for AWS.
+This repository contains codes,POC & refer material for Docker, ELk Stack ,kubernetes , jenkins, sonarqube & AWS.
