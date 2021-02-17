@@ -1,0 +1,232 @@
+Query DSL(Domain Specific Language)
+
+*In elasticsearch ,searching is carried out by using query based on JSON.Query is made up of two clause - 
+
+1)Leaf Query Clauses - These clauses are match, term or range, which look for a specific value in specific field.
+
+2)compound Query Clauses - These Queries are a combination of leaf query clauses and other compound queries to extract the desired information. 
+
+
+Queries :-
+
+1.For showing existing indices covid_india
+
+GET /covid_india/_search
+
+
+2.match_all qill send us an same output as _search ,but the advantage is we can have multiple options with match_all queries .
+
+GET /covid_india/_search
+{
+  "query": {
+    "match_all": {}
+  }
+}
+
+
+3.to search a specific value 
+
+GET /covid_india/_search
+{
+  "query": {
+    "match": {
+      "State/UnionTerritory": "Maharashtra"
+    }
+  }
+}
+
+*In This example i inserted incompleted value for "sate/unuonterriotory " so we got max_sore as null.
+
+***match***
+ 
+GET /covid_india/_search
+{
+  "query": {
+    "match": {
+      "State/UnionTerritory": "Maharashtr"
+    }
+  }
+}
+
+
+***match phrase***
+GET /covid_india/_search
+{
+  "query": {
+    "match_phrase": {
+      "Date": "31/01/20"
+    }
+  }
+}
+
+***match_phrase_prefix***
+
+4.In This query there is no need to mention full text . we need to specify just specify regular expression
+ 
+ GET /covid_india/_search
+ {
+   "query": {
+     "match_phrase_prefix": {
+       "State/UnionTerritory": "Mah"
+     }
+   }
+ }
+
+***multi_match***
+5.To search with multiple values.
+GET /covid_india/_search
+{
+  "query": {
+    "multi_match": {
+      "query": "77",
+      "fields": ["Sno","Deaths"]
+    }
+  }
+}
+
+
+***query string query***
+
+query string query:Supports the compact Lucene query string syntax,allowing you to specify AND | OR | NOT conditions and multi-field search within a signle query string.
+
+GET /covid_india/_search
+{
+  "query":
+  {
+    "query_string": {
+      "default_field": "State/UnionTerritory",
+      "query": "(maharashtra) OR Goa "
+    }
+  }
+}
+
+The above queries are not for numberic values . so we have here term level queries.
+
+GET /covid_india/_search
+{
+  "query": {
+    "term": {
+      
+      "Confirmed": {
+        "value": 77
+        
+      }
+    }
+  }
+}
+
+
+***range Query***
+
+range query :
+    range query is used to find te objects having values between the range of values.
+    For this, we need to use operators like:-
+    *gte :- greater than equal to
+    *gt:- greater than
+    *lte :- less than equal to
+    *lt :- less than
+    
+GET /covid_india/_search
+{
+  "query": {
+    "range": {
+      "Confirmed": {
+        "gte": 10,
+        "lte": 2000000
+      }
+    }
+  }
+}
+
+       Mapping...
+Mapping Type
+*Each index has one mapping type which determines how the document will be indexed.
+*A mapping type has:
+
+*Meta-fields
+* Meta-fields are used to customize how a document’s metadata associated is treated. Examples ofm meta-fields include the document’s index, type, id,and_source fields.
+
+*Fields or properties:-
+* A mapping type contains a list of fields or properties pertinent to the document.
+
+*Field datatype
+
+Each field has a data type which can be:
+
+* asimple type like text, keyword, date, long, double, boolean or ip.
+
+*a type which supports the hierarchical nature of JSON such as object or nested.
+
+* ora specialized type like geo point, geo shape, or completion
+
+**What is Dynamic mapping
+  
+  
+GET /covid_india/_mapping
+
+Exmple of Dynamic Mapping
+
+PUT /customer/_doc/1
+{
+  "address" : "A/P:- tarale Khurd"
+}
+
+GET /customer/_mapping
+
+
+
+
+Analysis
+
+Analysis : Analysis is the process of converting text, like the body of any email, into tokens or terms which are added to the inverted index for searching.
+
+Analysis is performed by an analyzer which can be either a built-in analyzer or a custom analyzer defined per index.
+
+For example, at index time the built-in analyzer will first convert the sentence:
+
+"The QUICK brown fox jump over the lazy dog"
+
+into distinct tokens. it will then lowercase each token and then will be added to the inverted index,
+
+[the,quick,brown,fox,jump,over,lazy,dog]
+
+we are use here POST method of analsis.
+
+POST _analyze
+{
+  "analyzer": "standard",
+  "text" : "pyhton is my favorite language"
+}
+
+Analyzer
+
+An analyzer - whether built-in or custom - is just a package which contains three lower-level building blocks:
+      *character filters
+      
+      *Tokenizers :-
+         standard
+         white space
+         lowercase
+         keyword
+      
+      *token filters
+      
+      
+POST _analyze
+{
+  "tokenizer": "keyword",
+  "char_filter": ["html_strip"],
+  "text" : "<p>my name is Dhiraj<b> GURAV</b></p>"
+}
+
+POST _analyze
+{
+  "tokenizer": "whitespace",
+  "text" : "<p>my name is Dhiraj<b> GURAV</b></p>"
+}
+
+POST _analyze
+{
+  "tokenizer": "lowercase",
+  "text" : "<p>my NAME is DhirAj<b> GURAV</b></p>"
+}
