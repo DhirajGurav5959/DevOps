@@ -1,0 +1,50 @@
+helm:-
+
+           what is helm?
+
+     1.      packge manager for kubernetes 
+
+           To packge YAML files  and distributes them in public and private repositories 
+
+           bundles of yaml files
+
+           Download and use exitings helm chart
+
+          to search the specific package  heml search <"Keyword">
+
+           or helm hub
+
+ 2. Templating Engine:-
+
+         values.yaml
+
+          You can write seperate yaml file for each n every service of the kubernetes server
+
+            *Define a common blueprint
+
+            * dynamic values are replaced by placeholders
+             
+            *Templsate files:-
+
+                           here we are store the values
+
+               * values are set through either the values.yaml file or the command line --set flag
+
+3.we can deploy same application across different environments
+
+     Development    stagging      production
+
+     you can pacake all the necessary yaml file in one own chart . make all deployment processs easy
+
+     mychar/
+        chart.yaml :-  metadata about chart
+        values.yml :-   valumplate fileses for the te
+
+        charts/   :- chart dependencies
+
+        templates/   templates folder
+
+
+#helm install chartname 
+
+#

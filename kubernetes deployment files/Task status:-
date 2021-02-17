@@ -1,0 +1,74 @@
+Task status:-
+
+
+Kubernets completed topics:-
+
+             1.kubernets introduction.
+
+             2.k8 Architecture :-
+                             1)Node
+
+                             2)Master processs:-
+                                               1)API server
+
+                                               2)Scheduler
+
+                                               3)Controller manager
+
+                                               4)etcd
+
+             3.main k8s components :-
+
+                          1)pod
+
+                          2)service
+
+                          3)Ingress
+
+                          4)Deployment
+
+                          5)StatefulSet
+
+                          6)Volumes
+
+                          7)ConfigMap
+
+                          8)Secrets
+
+
+             4.minikube and kubectl-Local setup
+
+             5.main kubectl commmands- k8 CLI:
+                                              1)CRUD Commands for deployment
+
+
+             6.k8 YAML Configuration file
+
+             7.Deploy mongodb application on kubernets locally
+
+             8.k8 Namespaces- orginixe components:-
+                    use of namespace:-
+                          1)resources grouped in Namespaces
+
+                          2)conficts :many teams, same application
+
+                          3)Resource sharing :Blue/Green Deployment
+                          
+                          4)Access and Resource Limts on Namespaces
+
+
+
+             9.k8 Ingress :-
+                             1)Ingress introduction
+
+                             2)creating an ingress rule
+
+                             3)configuring TLS Certificate
+
+             10.Helm - package manager
+
+             11.volumes-Persisiting Data in K8s
+
+             12.k8s statefulset- Deploying stateful Apps  
+           
+             13.k8 services

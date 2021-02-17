@@ -1,0 +1,21 @@
+Today's Tasks:
+            
+            	1.Docker complete
+            	
+            	2.Docer orchastration :- kubernetes
+            	
+            	3.ELK Stack
+            	
+            	4.Jenkins
+            	
+            	5.Sonarqube
+            	
+            	6.AWS
+            	
+            
+            
+            
+            docker run -d --network mongo-network --name mongodb \
+    -e MONGO_INITDB_ROOT_USERNAME=mongoadmin \
+    -e MONGO_INITDB_ROOT_PASSWORD=password \
+    mongo 

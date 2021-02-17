@@ -1,0 +1,69 @@
+istio
+
+what is istio
+
+
+
+
+Sir i completed these topics:-
+
+
+1.what is kubernetes?
+
+2.k8 Architecture
+
+3.main k8 components:-
+                      1. Node and Pod
+
+                      2.service :-
+
+                      3. Ingress:-
+
+                      4.ConfigMap:-
+
+                      5.Secret:-
+
+
+4. minikube and kubectl -local setup
+
+5.main kubectl commmands - k8 CLI
+
+6.Volumes :-
+
+7.Deployment :-
+
+8.StatefulSet:-
+
+9.Master processess:-
+          
+            1.Api server
+
+            2.Scheduler:-
+
+            3.components manager :-
+
+            4.etcd :-
+
+
+
+ What is minikube ?
+
+ 1.installing of minikube 
+  
+ 2.Creating pods
+
+ 3.Editing Pods
+
+ 4.Debuging pods:
+
+ 5.Deleting the pods:
+
+
+ Helm:-
+     what is helm?
+
+     1.packge manager for kubernetes 
+
+     2.Templating Engine:-
+
+     3.structure of helm

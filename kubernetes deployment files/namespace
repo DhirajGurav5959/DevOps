@@ -1,0 +1,16 @@
+namespace
+
+ -organise resources in namespace
+
+- virtual cluster inside a cluster
+
+4 namespace per default
+
+-do not 
+
+How to create namespace?
+
+#kubectl create namespace my-namespace
+
+#kubectl get  namespace
+ 

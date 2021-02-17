@@ -1,0 +1,47 @@
+
+
+#kubectl get secret my-minio -o jsonpath="{.data.secretkey}" | base64 --decode
+
+
+secretkey :- UfS1e6LaECG5T7Abx8fXIvBy2EY51ZoFyOYxFasG
+
+#kubectl get secret my-minio -o jsonpath="{.data.accesskey}" | base64 --decode
+
+access key :- wx16kR5WdXEJGZ2u8aS5
+
+
+
+
+
+
+Bro do u have any task assigned?
+
+
+How to deploy minio to kubernetes ?
+
+$ helm repo add minio https://helm.min.io/
+
+ helm install --namespace minio --generate-name minio/minio
+
+  helm install my-release minio/minio
+
+  $ helm install --set accessKey=myaccesskey,secretKey=mysecretkey --generate-name minio/minio
+
+  To access Minio from localhost, run the below commands:
+
+  1. export POD_NAME=$(kubectl get pods --namespace default -l "release=my-minio" -o jsonpath="{.items[0].metadata.name}")
+
+  2. kubectl port-forward $POD_NAME 9000 --namespace default
+
+Read more about port forwarding here: http://kubernetes.io/docs/user-guide/kubectl/kubectl_port-forward/
+
+You can now access Minio server on http://localhost:9000. Follow the below steps to connect to Minio server with mc client:
+
+  1. Download the Minio mc client - https://docs.minio.io/docs/minio-client-quickstart-guide
+
+  2. Get the ACCESS_KEY=$(kubectl get secret my-minio -o jsonpath="{.data.accesskey}" | base64 --decode) and the SECRET_KEY=$(kubectl get secret my-minio -o jsonpath="{.data.secretkey}" | base64 --decode)
+
+  3. mc alias set my-minio-local http://localhost:9000 "$ACCESS_KEY" "$SECRET_KEY" --api s3v4
+
+  4. mc ls my-minio-local
+
