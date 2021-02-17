@@ -1,0 +1,30 @@
+Time1=`/bin/date +%d-%m-%Y`
+Time=`/bin/date +%d-%m-%Y-%T`
+echo ===========================================================================                                                                                        ===================== >>  /home/ubuntu/dump/backuplog
+echo DB Backup started at $Time >> /home/ubuntu/dump/backuplog
+
+mongodump --db asp_gsp_gst_prod  -u gsthero_db_user_dev -p G5tHeroatMoNg0Db --gz                                                                                        ip  -o /home/ubuntu/dump
+#mongodump --db asp_gsp_pretest  -u gsthero_db_user_dev -p G5tHeroatMoNg0Db --gz                                                                                        ip  -o /home/ubuntu/dump
+
+echo Creating ZIP file of DB >> /home/ubuntu/dump/backuplog
+
+zip -r /home/ubuntu/dump/gsthero_prod_mongodb_backup_$Time1.zip /home/ubuntu/dum                                                                                        p/
+
+echo Zip file created for Prod DB at $Time >> /home/ubuntu/dump/backuplog
+
+echo Upload to S3 bucket started >> /home/ubuntu/dump/backuplog
+
+aws s3 cp /home/ubuntu/dump/gsthero_prod_mongodb_backup_$Time1.zip s3://gsthero-                                                                                        db-backups/mongodb_backup/
+
+echo DB uploaded to S3 Bucket successfully >> /home/ubuntu/dump/backuplog
+size=`du -h -s  /home/ubuntu/dump/asp_gsp_gst_prod`
+#size=`du -h -s  /home/ubuntu/dump/asp_gsp_pretest`
+echo Size of Zip file is $size >>  /home/ubuntu/dump/backuplog
+rm -rf /home/ubuntu/dump/gsthero_prod_mongodb_backup_$Time1.zip
+rm -rf /home/ubuntu/dump/asp_gsp_gst_prod
+#rm -rf /home/ubuntu/dump/asp_gsp_pretest
+
+echo Removed backup created temporarily >> /home/ubuntu/dump/backuplog
+
+echo Backup completed and Removed ZIP file at $(date) >> /home/ubuntu/dump/backu                                                                                        plog
+echo ===========================================================================                                                                                        ===================== >>  /home/ubuntu/dump/backuplog

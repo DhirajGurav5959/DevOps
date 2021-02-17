@@ -1,0 +1,209 @@
+image: atlassian/default-image:2
+
+pipelines:
+  default:
+    - step:
+        name: Sonarqube Analysis
+        caches:
+          - docker
+        services:
+          - docker
+        size: 2x
+        script:
+          - echo "Hello World"
+          - docker container run --rm -v $PWD://app/ code.validus.sg:48083/sonar-scanner:2 -Dsonar.projectBaseDir=/app/
+    - step:
+        name: Build and Push Docker Image to ECR
+        caches:
+         - docker
+        services:
+          - docker
+        script:
+         - export IMAGE_NAME=web-sg
+         - git submodule update --init 
+         - docker build -t $IMAGE_NAME .
+         - pipe: atlassian/aws-ecr-push-image:1.2.2
+           variables:
+             AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
+             AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
+             AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
+             IMAGE_NAME: $IMAGE_NAME
+             TAGS: '${BITBUCKET_BUILD_NUMBER} latest'
+
+  branches: 
+    integration:
+     - step:
+        name: Build and Push Docker Image to ECR
+        caches:
+         - docker
+        services:
+          - docker
+        script:
+         - export IMAGE_NAME=web-sg
+         - git submodule update --init
+         - docker build --build-arg DEPLOYMENT_ENV=qa -t $IMAGE_NAME .
+         - pipe: atlassian/aws-ecr-push-image:1.2.2
+           variables:
+             AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
+             AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
+             AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
+             IMAGE_NAME: $IMAGE_NAME
+             TAGS: '${BITBUCKET_BUILD_NUMBER} latest'
+     - step:
+          name: Deploy to QA Environment
+          deployment: qa
+          script:
+           - echo "Deploying to QA environment"
+           - mkdir -p ~/.ssh
+           - (umask  077 ; echo $QA_SSH_KEY | base64 -di > ~/.ssh/id_rsa)
+           - scp docker-compose.yml $QA_USER@$QA_HOST:$QA_DEPLOYMENT_PATH
+           - scp deploy.sh $QA_USER@$QA_HOST:$QA_DEPLOYMENT_PATH
+           - ssh $QA_USER@$QA_HOST "cd /home/qaadmin/.web-sg/ && chmod +x deploy.sh"
+           - ssh $QA_USER@$QA_HOST "aws --profile devops_build ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin 046368006331.dkr.ecr.ap-southeast-1.amazonaws.com"
+           - ssh $QA_USER@$QA_HOST "cd /home/qaadmin/.web-sg/ && ./deploy.sh "$BITBUCKET_BUILD_NUMBER" qaadmin"
+
+  custom:
+
+    Play Deployment:
+     - step:
+        name: Build and Push Docker Image to ECR
+        caches:
+         - docker
+        services:
+          - docker
+        script:
+         - export IMAGE_NAME=web-sg
+         - git submodule update --init
+         - docker build -t $IMAGE_NAME .
+         - pipe: atlassian/aws-ecr-push-image:1.2.2
+           variables:
+             AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
+             AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
+             AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
+             IMAGE_NAME: $IMAGE_NAME
+             TAGS: '${BITBUCKET_BUILD_NUMBER} latest'
+     - step:
+           name: Deploy to Staging Environment
+           deployment: staging 
+           script:
+                 - echo "Deploying to staging environment"
+                 - mkdir -p ~/.ssh
+                 - (umask  077 ; echo $PLAY_SSH_KEY | base64 -di > ~/.ssh/id_rsa)
+                 - scp docker-compose.yml $PLAY_USER@$PLAY_HOST:$PLAY_DEPLOYMENT_PATH
+                 - scp deploy.sh $PLAY_USER@$PLAY_HOST:$PLAY_DEPLOYMENT_PATH
+                 - ssh $PLAY_USER@$PLAY_HOST "cd /home/qaadmin/.web-sg/ && chmod +x deploy.sh"
+                 - ssh $PLAY_USER@$PLAY_HOST "aws --profile devops_build ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin 046368006331.dkr.ecr.ap-southeast-1.amazonaws.com "
+                 - ssh $PLAY_USER@$PLAY_HOST "cd /home/qaadmin/.web-sg/ && ./deploy.sh "$BITBUCKET_BUILD_NUMBER" qaadmin"
+
+    DEV Deployment:
+     - step:
+        name: Build and Push Docker Image to ECR
+        caches:
+         - docker
+        services:
+          - docker
+        script:
+         - export IMAGE_NAME=web-sg
+         - git submodule update --init 
+         - docker build -t $IMAGE_NAME .
+         - pipe: atlassian/aws-ecr-push-image:1.2.2
+           variables:
+             AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
+             AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
+             AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
+             IMAGE_NAME: $IMAGE_NAME
+             TAGS: '${BITBUCKET_BUILD_NUMBER} latest'
+     - step:
+           name: Deploy to DEV Environment
+           deployment: dev
+           script:
+              - echo "Deploying to DEV environment"
+              - mkdir -p ~/.ssh
+              
+              - (umask  077 ; echo $DEV_SSH_KEY | base64 -di > ~/.ssh/id_rsa)
+              - scp docker-compose.yml $DEV_USER@$DEV_HOST:$DEV_DEPLOYMENT_PATH
+              - scp deploy.sh $DEV_USER@$DEV_HOST:$DEV_DEPLOYMENT_PATH
+              - ssh $DEV_USER@$DEV_HOST "cd /home/devadmin/.web-sg/ && chmod +x deploy.sh"
+              - ssh $DEV_USER@$DEV_HOST "aws --profile devops_build ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin 046368006331.dkr.ecr.ap-southeast-1.amazonaws.com"
+              - ssh $DEV_USER@$DEV_HOST "cd /home/devadmin/.web-sg/ && ./deploy.sh "$BITBUCKET_BUILD_NUMBER" devadmin"
+    
+    QA Deployment:
+     - step:
+        name: Build and Push Docker Image to ECR
+        caches:
+         - docker
+        services:
+          - docker
+        script:
+         - export IMAGE_NAME=web-sg
+         - git submodule update --init
+         - docker build --build-arg DEPLOYMENT_ENV=qa -t $IMAGE_NAME .
+         - pipe: atlassian/aws-ecr-push-image:1.2.2
+           variables:
+             AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
+             AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
+             AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
+             IMAGE_NAME: $IMAGE_NAME
+             TAGS: '${BITBUCKET_BUILD_NUMBER} latest'
+     - step:
+          name: Deploy to QA Environment
+          deployment: qa
+          script:
+           - echo "Deploying to QA environment"
+           - mkdir -p ~/.ssh           
+           - (umask  077 ; echo $QA_SSH_KEY | base64 -di > ~/.ssh/id_rsa)
+           - scp docker-compose.yml $QA_USER@$QA_HOST:$QA_DEPLOYMENT_PATH
+           - scp deploy.sh $QA_USER@$QA_HOST:$QA_DEPLOYMENT_PATH
+           - ssh $QA_USER@$QA_HOST "cd /home/qaadmin/.web-sg/ && chmod +x deploy.sh"
+           - ssh $QA_USER@$QA_HOST "aws --profile devops_build ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin 046368006331.dkr.ecr.ap-southeast-1.amazonaws.com"
+           - ssh $QA_USER@$QA_HOST "cd /home/qaadmin/.web-sg/ && ./deploy.sh "$BITBUCKET_BUILD_NUMBER" qaadmin"
+
+       - step:
+            name: Sendning email after Deploy to QA Environment
+            after-script:
+      - ALERT_TYPE="success"
+      - if [[ $BITBUCKET_EXIT_CODE -ne 0 ]]; then ALERT_TYPE="error" ; fi
+      - pipe: atlassian/email-notify:0.3.12
+        variables:
+          USERNAME: 'myemail@example.com'
+          PASSWORD: $PASSWORD
+          FROM: 'myemail@example.com'
+          TO: 'example1@example.com, example2@example.com'
+          HOST: 'smtp.gmail.com'
+          SUBJECT: '${ALERT_TYPE}:Bitbucket Pipe Notification for ${BITBUCKET_BRANCH}'
+
+    Staging Deployment:
+     - step:
+        name: Build and Push Docker Image to ECR
+        caches:
+         - docker
+        services:
+          - docker
+        script:
+         - export IMAGE_NAME=web-sg
+         - git submodule update --init
+         - docker build --build-arg DEPLOYMENT_ENV=staging -t $IMAGE_NAME .
+         - pipe: atlassian/aws-ecr-push-image:1.2.2
+           variables:
+             AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
+             AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
+             AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
+             IMAGE_NAME: $IMAGE_NAME
+             TAGS: '${BITBUCKET_BUILD_NUMBER} latest'
+     - step:
+           name: Deploy to Staging Environment
+           deployment: staging 
+           script:
+                 - echo "Deploying to staging environment"
+                 - mkdir -p ~/.ssh
+                 - (umask  077 ; echo $STAGING_SSH_KEY | base64 -di > ~/.ssh/id_rsa)
+                 - scp docker-compose.yml $STAGING_USER@$STAGING_HOST:$STAGING_DEPLOYMENT_PATH
+                 - scp deploy.sh $STAGING_USER@$STAGING_HOST:$STAGING_DEPLOYMENT_PATH
+                 - ssh $STAGING_USER@$STAGING_HOST "cd /home/borrowerdev/.web-sg/ && chmod +x deploy.sh"
+                 - ssh $STAGING_USER@$STAGING_HOST "aws --profile devops_build ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin 046368006331.dkr.ecr.ap-southeast-1.amazonaws.com "
+                 - ssh $STAGING_USER@$STAGING_HOST "cd /home/borrowerdev/.web-sg/ && ./deploy.sh "$BITBUCKET_BUILD_NUMBER" borrowerdev"
+
+definitions:
+  services:
+    docker:
+      memory: 3072

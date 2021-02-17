@@ -1,0 +1,353 @@
+Started by user Shrikar
+
+**pipeline started by shrikar sir
+
+Obtained aws-auth-server.groovy from git https://bitbucket.org/perennialsys/jenkins-scripts.git
+
+**fetch code asw-aurh-server.groovy from github
+
+
+
+Running in Durability level: MAX_SURVIVABILITY
+
+##MAXIMUM DURABILITY ("MAX_SURVIVABILITY") - BEHAVES JUST LIKE PIPELINE DID BEFORE, SLOWEST OPTION. USE THIS FOR RUNNING YOUR MOST CRITICAL PIPELINES.
+
+**Performance-optimized mode ("PERFORMANCE_OPTIMIZED") - Greatly reduces disk I/O. If Pipelines do not finish AND Jenkins is not shut down gracefully, they may lose data and behave like Freestyle projects — see details above.
+
+Maximum durability ("MAX_SURVIVABILITY") - behaves just like Pipeline did before, slowest option. Use this for running your most critical Pipelines.
+
+eLess durable, a bit faster ("SURVIVABLE_NONATOMIC") - Writes data with every step but avoids atomic writes. This is faster than maximum durability mode, especially on networked filesystems. It carries a small extra risk (details above under "What Am I Giving Up: Atomic Writes").
+
+
+
+
+[Pipeline] Start of Pipeline
+
+**starting to the pipeline
+
+[Pipeline] node
+
+A node is a machine which is part of the Jenkins environment and is capable of executing a Pipeline.
+
+Also, a node block is a key part of Scripted Pipeline syntax
+Running on Jenkins in /var/jenkins_home/workspace/AWS-Auth-Server
+
+[Pipeline] {
+[Pipeline] ansiColor
+
+***The ANSI-color plug in transforms your console output to HTML. If your output contains ansi escape sequences, then it converts these special char sequences into (colored) HTML. You can only configure the mapping via 'ANSI color map'.
+
+[Pipeline] {
+
+[Pipeline] stage
+
+[Pipeline] { (SCM)
+
+
+
+
+***connecting to source code management.
+
+[Pipeline] deleteDir
+[Pipeline] checkout
+
+***checkout stage for validating the credentials
+
+using credential DevOpsBitbucket
+
+Cloning the remote Git repository
+**clone the git repository
+
+Cloning repository https://bitbucket.org/perennialsys/aws-azure-auth-server.git
+ > git init /var/jenkins_home/workspace/AWS-Auth-Server # timeout=10
+ 
+**firing git init command
+
+Fetching upstream changes from https://bitbucket.org/perennialsys/aws-azure-auth-server.git
+ > git --version # timeout=10
+
+using GIT_ASKPASS to set credentials 
+
+ 
+> git fetch --tags --progress -- https://bitbucket.org/perennialsys/aws-azure-auth-server.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+
+***The git fetch command downloads commits, files, and refs from a remote repository into your local repo
+
+ > git config remote.origin.url https://bitbucket.org/perennialsys/aws-azure-auth-server.git # timeout=10remov
+
+**adding remote for configuration
+
+ > git config --add remote.origin.fetch +refs/heads/*:refs/remotes/origin/* # timeout=10
+
+ > git config remote.origin.url https://bitbucket.org/perennialsys/aws-azure-auth-server.git # timeout=10
+
+Fetching upstream changes from https://bitbucket.org/perennialsys/aws-azure-auth-server.git
+The git fetch command downloads commits, files, and refs from a remote repository into your local repo
+
+using GIT_ASKPASS to set credentials 
+
+**If the GIT_ASKPASS environment variable is set, the program specified by the variable is invoked. A suitable prompt is provided to the program on the command line, and the user’s input is read from its standard output.
+
+##Otherwise, if the core.askPass configuration variable is set, its value is used as above.
+
+##Otherwise, if the SSH_ASKPASS environment variable is set, its value is used as above.
+
+ > git fetch --tags --progress -- https://bitbucket.org/perennialsys/aws-azure-auth-server.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/develop^{commit} # timeout=10
+***Use git rev-parse in shell quoting mode (see SQ-QUOTE section below). In contrast to the --sq option below, this mode does only quoting. Nothing else is done to command input.
+
+ > git rev-parse refs/remotes/origin/origin/develop^{commit} # timeout=10
+Checking out Revision 5a9a18e6c9fa5cf82e53c3c3c566fd4b1a34b578 (refs/remotes/origin/develop)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 5a9a18e6c9fa5cf82e53c3c3c566fd4b1a34b578 # timeout=10
+Commit message: "Merged in bug/domain (pull request #25)"
+ > git rev-list --no-walk 54ded8b1cfbfa8e041dfcbe352829d94f4f69557 # timeout=10
+ > git remote # timeout=10
+ > git submodule init # timeout=10
+
+git-submodule - Initialize, update or inspect submodules
+ > git submodule sync # timeout=10
+ > git config --get remote.origin.url # timeout=10
+ > git submodule init # timeout=10
+ > git config -f .gitmodules --get-regexp ^submodule\.(.+)\.url # timeout=10
+ > git config --get submodule.proto.url # timeout=10
+ > git remote # timeout=10
+ > git config --get remote.origin.url # timeout=10
+***git/config file in each repository is used to store the configuration for that repository, and
+ > git config -f .gitmodules --get submodule.proto.path # timeout=10
+using GIT_ASKPASS to set credentials 
+ > git submodule update --init --recursive proto # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Build Server)
+[Pipeline] sh
+
++ mkdir certs
+***creating director certs
++ cp /var/jenkins_home/keys/cert-aws-azure/server.staging.crt certs/server.crt
+[Pipeline] sh
++ cp /var/jenkins_home/keys/cert-aws-azure/server.staging.key certs/server.key
+[Pipeline] sh
++ make docker TAG=072040503405.dkr.ecr.ap-south-1.amazonaws.com/aws-auth-server:jenkins-qa-600 VCS_URL=bitbucket.org USER=devops@perennialsys.com PASS=devops!@#123 INSTRUMENTATION_KEY=d8747955-752d-49b7-abf9-d19e4e0d850a
+***creating a new  docker image tag for pushing it on the aws ECR
+make: go: Command not found
+docker build --build-arg VCS_URL=bitbucket.org --build-arg USER=devops@perennialsys.com --build-arg PASS=devops!@#123 --build-arg PROD= --build-arg INSTRUMENTATION_KEY=d8747955-752d-49b7-abf9-d19e4e0d850a -t 072040503405.dkr.ecr.ap-south-1.amazonaws.com/aws-auth-server:jenkins-qa-600 .
+**building and dockeer image 
+Sending build context to Docker daemon  2.526MB
+
+Step 1/20 : FROM golang:1.14-alpine AS bob
+ ---> dda4232b2bd5
+
+* from goland server it is pulling conatints
+
+Step 2/20 : WORKDIR /go/src/aws-azure-auth-server
+ ---> Using cache
+**current work directory is
+ ---> 28da74734e4d
+
+Step 3/20 : RUN apk add --no-cache protobuf git make bash build-base 	&& rm -rf /var/cache/apk/*
+
+
+ ---> Using cache
+ ---> e7c42379c528
+Step 4/20 : COPY . .
+ ---> fada718e335f
+Step 5/20 : ARG VCS_URL=""
+ ---> Running in 89b9817999a2
+Removing intermediate container 89b9817999a2
+ ---> 2691ef85f94a
+Step 6/20 : ARG USER=""
+ ---> Running in 161c5fbe689c
+Removing intermediate container 161c5fbe689c
+ ---> d56546296995
+Step 7/20 : ARG PASS=""
+ ---> Running in 37ee0dbdb947
+Removing intermediate container 37ee0dbdb947
+ ---> 14f6bbe31cc1
+Step 8/20 : ARG INSTRUMENTATION_KEY=""
+ ---> Running in 8865921acac2
+Removing intermediate container 8865921acac2
+ ---> a3ef06bf2119
+Step 9/20 : RUN if [ "$VCS_URL" != "" ]; then echo -e "machine $VCS_URL\n\tlogin $USER\n\tpassword $PASS" >> ~/.netrc; fi
+ ---> Running in 8763397b2085
+Removing intermediate container 8763397b2085
+ ---> d75a90ee55e6
+
+Step 10/20 : RUN make generate     && make install-deps     && make test     && make build INSTRUMENTATION_KEY=$INSTRUMENTATION_KEY
+ ---> Running in e7755183714f
+
+GO111MODULE=off go get -u github.com/golang/protobuf/protoc-gen-go
+protoc -I /go/src/aws-azure-auth-server --go_out=plugins=grpc:/go/src/ proto/auth-service.proto && protoc -I /go/src/aws-azure-auth-server --go_out=plugins=grpc:/go/src/ proto/session-manager.proto
+**getting go project from github
+[91m2020/11/26 07:36:54 WARNING: Malformed 'go_package' option in "proto/auth-service.proto", please specify:
+	option go_package = "aws-azure-auth/auth-service;auth_service";
+A future release of protoc-gen-go will reject this.
+See https://developers.google.com/protocol-buffers/docs/reference/go-generated#package for more information.
+
+2020/11/26 07:36:54 WARNING: Malformed 'go_package' option in "proto/auth-service.proto", please specify:
+	option go_package = "aws-azure-auth/auth-service;auth_service";
+A future release of protoc-gen-go will reject this.
+See https://developers.google.com/protocol-buffers/docs/reference/go-generated#package for more information.
+
+2020/11/26 07:36:54 WARNING: Malformed 'go_package' option in "proto/auth-service.proto", please specify:
+	option go_package = "aws-azure-auth/auth-service;auth_service";
+A future release of protoc-gen-go will reject this.
+See https://developers.google.com/protocol-buffers/docs/reference/go-generated#package for more information.
+
+[0m[91m2020/11/26 07:36:54 WARNING: Malformed 'go_package' option in "proto/session-manager.proto", please specify:
+	option go_package = "aws-azure-auth/session-manager;session_manager";
+A future release of protoc-gen-go will reject this.
+See https://developers.google.com/protocol-buffers/docs/reference/go-generated#package for more information.
+
+[0m[91m2020/11/26 07:36:54 WARNING: Malformed 'go_package' option in "proto/session-manager.proto", please specify:
+	option go_package = "aws-azure-auth/session-manager;session_manager";
+A future release of protoc-gen-go will reject this.
+See https://developers.google.com/protocol-buffers/docs/reference/go-generated#package for more information.
+
+[0m[91m2020/11/26 07:36:54 WARNING: Malformed 'go_package' option in "proto/session-manager.proto", please specify:
+	option go_package = "aws-azure-auth/session-manager;session_manager";
+A future release of protoc-gen-go will reject this.
+See https://developers.google.com/protocol-buffers/docs/reference/go-generated#package for more information.
+
+[0mcd ../aws-azure-auth && go mod init bitbucket.org/perennialsys/aws-azure-auth && cd ../aws-azure-auth-server
+[91mgo: creating new go.mod: module bitbucket.org/perennialsys/aws-azure-auth
+[0mgo mod edit -require bitbucket.org/perennialsys/aws-azure-auth@v0.0.0
+go mod edit -replace bitbucket.org/perennialsys/aws-azure-auth@v0.0.0=/go/src/aws-azure-auth
+GOPRIVATE=bitbucket.org/perennialsys/* go mod download
+go test -covermode=atomic -coverpkg=/go/src/aws-azure-auth-server/... -coverprofile coverage.out ./...
+[91mwarning: no packages being tested depend on matches for pattern /go/src/aws-azure-auth-server/...
+[0m?   	bitbucket.org/perennialsys/aws-azure-auth-server	[no test files]
+ok  	bitbucket.org/perennialsys/aws-azure-auth-server/actions	152.277s	coverage: [no statements]
+?   	bitbucket.org/perennialsys/aws-azure-auth-server/cmd	[no test files]
+?   	bitbucket.org/perennialsys/aws-azure-auth-server/database	[no test files]
+ok  	bitbucket.org/perennialsys/aws-azure-auth-server/functions	1.386s	coverage: [no statements]
+?   	bitbucket.org/perennialsys/aws-azure-auth-server/mocks	[no test files]
+?   	bitbucket.org/perennialsys/aws-azure-auth-server/server	[no test files]
+?   	bitbucket.org/perennialsys/aws-azure-auth-server/storage	[no test files]
+ok  	bitbucket.org/perennialsys/aws-azure-auth-server/types	0.023s	coverage: [no statements]
+ok  	bitbucket.org/perennialsys/aws-azure-auth-server/version	0.002s	coverage: [no statements]
+CGO_ENABLED=0 TARGET_GOOS=linux GOARCH=amd64 ./build.sh /go/bin aadawscli-server v4.1.1-2-g5a9a18e 5a9a18e ./ d8747955-752d-49b7-abf9-d19e4e0d850a
+Built binary
+Removing intermediate container e7755183714f
+ ---> 49327ce39fe2
+Step 11/20 : FROM alpine:3.12
+ ---> a24bb4013296
+Step 12/20 : WORKDIR /
+ ---> Using cache
+ ---> 5378c109cc25
+Step 13/20 : RUN apk add --no-cache chromium ca-certificates 	&& update-ca-certificates     && rm -rf /var/cache/apk/*
+ ---> Using cache
+ ---> dd2ec383ba03
+Step 14/20 : COPY --from=bob /go/bin/aadawscli-server .
+ ---> 2ec9f395c313
+Step 15/20 : COPY --from=bob /go/src/aws-azure-auth-server/config.toml /root/.aadawscli-server/config.toml
+ ---> 37660f03ffd7
+Step 16/20 : COPY --from=bob /go/src/aws-azure-auth-server/certs/server.crt .
+ ---> 76caeb4436a0
+Step 17/20 : COPY --from=bob /go/src/aws-azure-auth-server/certs/server.key .
+ ---> ef1adcfeb5da
+Step 18/20 : ARG PROD=""
+ ---> Running in 8b6e73a1b484
+Removing intermediate container 8b6e73a1b484
+ ---> 39f50bb98807
+Step 19/20 : RUN if [ "$PROD" != "" ]; then sed -i -e 's/false/true/g' /root/.aadawscli-server/config.toml; fi
+ ---> Running in a45fcaf09c33
+Removing intermediate container a45fcaf09c33
+ ---> a5e833b69e1c
+Step 20/20 : ENTRYPOINT ["/aadawscli-server"]
+ ---> Running in 3c449007db2a
+Removing intermediate container 3c449007db2a
+ ---> d510085e29bc
+Successfully built d510085e29bc
+Successfully tagged 072040503405.dkr.ecr.ap-south-1.amazonaws.com/aws-auth-server:jenkins-qa-600
+Built binary
+[Pipeline] sh
++ docker login --username AWS --password-stdin 072040503405.dkr.ecr.ap-south-1.amazonaws.com
++ aws ecr get-login-password
+WARNING! Your password will be stored unencrypted in /root/.docker/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+Login Succeeded
+[Pipeline] sh
++ docker push 072040503405.dkr.ecr.ap-south-1.amazonaws.com/aws-auth-server:jenkins-qa-600
+The push refers to repository [072040503405.dkr.ecr.ap-south-1.amazonaws.com/aws-auth-server]
+62690567a9ce: Preparing
+c6b6bf8e6624: Preparing
+80f75da4bb07: Preparing
+083e5a4bb724: Preparing
+77fef868e87f: Preparing
+50644c29ef5a: Preparing
+50644c29ef5a: Waiting
+77fef868e87f: Layer already exists
+50644c29ef5a: Layer already exists
+62690567a9ce: Pushed
+80f75da4bb07: Pushed
+c6b6bf8e6624: Pushed
+083e5a4bb724: Pushed
+jenkins-qa-600: digest: sha256:6aae5ea4fcfca233d38088cdc0e28cc43256bcdab167a4def503d1b3d924a516 size: 1574
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Deploy)
+[Pipeline] dir
+Running in /var/jenkins_home/scripts
+[Pipeline] {
+[Pipeline] stash
+Stashed 9 file(s)
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] dir
+Running in /var/jenkins_home/workspace/AWS-Auth-Server
+[Pipeline] {
+[Pipeline] stash
+Stashed 92 file(s)
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] node
+Running on ms-server-qa in /home/ubuntu/.jenkins/workspace/AWS-Auth-Server
+[Pipeline] {
+[Pipeline] deleteDir
+[Pipeline] dir
+Running in /home/ubuntu/.jenkins/workspace/AWS-Auth-Server
+[Pipeline] {
+[Pipeline] unstash
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] dir
+Running in /home/ubuntu/.jenkins/workspace/AWS-Auth-Server
+[Pipeline] {
+[Pipeline] unstash
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] sh
++ chmod +x deploy-aws-azure-141.sh
++ sudo ./deploy-aws-azure-141.sh qa-600
+[1;32mDocker Installed[0m
+[1;32mDocker Service Running[0m
+[1;32mProceed with Deployment[0m
+Pulling aadawscli-server (072040503405.dkr.ecr.ap-south-1.amazonaws.com/aws-auth-server:jenkins-qa-600)...
+The image for the service you're trying to recreate has been removed. If you continue, volume data could be lost. Consider backing up your data before continuing.
+
+Continue with the new image? [yN]pull access denied for 072040503405.dkr.ecr.ap-south-1.amazonaws.com/aws-auth-server, repository does not exist or may require 'docker login': denied: Your authorization token has expired. Reauthenticate and try again.
+[1;32mDeployment finished
+[Pipeline] sleep
+Sleeping for 5 sec
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Notify)
+[Pipeline] emailext
+Not sending mail to unregistered user azharuddin@tazapay.com because your SCM claimed this was associated with a user ID ‘azharuddin' which your security realm does not recognize; you may need changes in your SCM plugin
+Sending email to: azharuddin.laskar@perennialsys.com husain.mithaiwala@perennialsys.com ajitem.sahasrabuddhe@perennialsys.com trunal.thakre@perennialsys.com harshal.badgujar@perennialsys.com
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // ansiColor
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS

@@ -1,0 +1,17 @@
+# FROM node:8.16.1-alpine as builder
+FROM node:14.15.1-alpine3.12 as builder
+ARG DEPLOYMENT_ENV=development
+RUN apk update && apk add --no-cache make git
+WORKDIR /app
+COPY package.json /app/
+#RUN npm install -g element-ui && npm install -g element-theme
+RUN npm install --no-progress --save
+COPY . /app/
+RUN npm run build:$DEPLOYMENT_ENV
+# RUN npm run build
+
+FROM nginx:alpine
+RUN rm -rf /usr/share/nginx/html/*
+COPY --from=builder /app/dist/ /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
