@@ -1,0 +1,33 @@
+ELK Stack 
+
+1.install ELK stack with version 6.8 locally.
+
+    2.Get logs of a simple java application in logstash
+
+    3.adding it to elastic search
+
+    4.applying filters on these logs.
+
+    5.making visualizations on these logs:
+                                    1.Data Table
+                                    2.Pie chart
+                                    3.Horizontal Bar Chart
+                                    4.Vertical Bar Chart
+
+
+
+   Step 1: downloading :-
+                      1.elastic search
+                      2.kibana
+                      3.logstash
+                      4.nginx
+
+   configure:- 
+                /etc/nginx/ngi
+
+
+
+/home/perennial/Desktop/Dev-OPs/ELK/Elastic Search/monitoring-alerting-master/spring-boot-logging/logback/spring-boot-logging.2021-01-28.log
+
+
+                spring-boot-logging.2021-01-28.log

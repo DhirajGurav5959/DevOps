@@ -1,0 +1,43 @@
+minikube start --memory=6192 --cpus=4 --kubernetes-version=v1.20.0 \
+--extra-config=controller-manager.cluster-signing-cert-file="/var/lib/localkube/certs/ca.crt" \
+--extra-config=controller-manager.cluster-signing-key-file="/var/lib/localkube/certs/ca.key" \
+--vm-driver=virtualbox
+
+
+
+
+
+
+
+
+helm install kubernetes-ingress haproxytech/kubernetes-ingress \
+  --set controller.imageCredentials.registry=kubernetes-registry.haproxy.com \
+  --set controller.imageCredentials.username=dhiraj \
+  --set controller.imageCredentials.password=dhiraj \
+  --set controller.image.repository=kubernetes-registry.haproxy.com/hapee-ingress \
+  --set controller.image.tag=latest
+
+
+
+kubectl patch dervice my-app -p '{"spec":{"selector":{"version":"v2.0.0"}}}'
+
+Hello sir 
+  i see the tutorial based on deployment startegies in kubernetes :
+
+      1)rolling update
+
+      2)recreate
+
+      3)Blue-Green Deployment
+
+      4)canary
+
+      trying to implement for Blue-Green
+
+      these two deployment i did.
+
+      and forword the traffic from version 1 to version 2 using : 
+#kubectl patch dervice my-app -p '{"spec":{"selector":{"version":"v2.0.0"}}}'
+
+now i am looking for how to assign percentage of weight so we can manage the traffic .
+

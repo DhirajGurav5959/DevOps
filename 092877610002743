@@ -1,0 +1,38 @@
+092877610002743
+
+ 
+***Blue green deployment using aws EKS
+for that i performs following operatons.
+*step 1: 
+		we need to create a IAM role which is allows EKS control pannel policies .
+
+*step2 :
+         create cloud formation :- create stack :- https://s3.us-west-2.amazonaws.com/amazon-eks/cloudformation/2020-10-29/amazon-eks-vpc-private-subnets.yaml
+
+*step 3 :-
+          create aws eks cluster. named as nginx cluster
+
+*step 4:
+         connnect kubectl with aws eks cluster
+
+         #aws eks update-kubeconfig --name nginx-cluster
+
+*step 5 : 
+         create a worker node .
+
+         use cloudformation for this.
+
+         https://s3.us-west-2.amazonaws.com/amazon-eks/cloudformation/2020-10-29/amazon-eks-nodegroup.yaml
+
+SecurityGroups	sg-0d27d6504b033a5c9	
+
+SubnetIds	subnet-081c0cd13617a8b34,subnet-0d87ae2f16a3149b8,subnet-078f9680985e543e6,subnet-00e7b37f33a859ac4	
+
+VpcId	vpc-03cf0343a0bb3a176	The VPC Id
+
+
+
+
+
+
+

@@ -1,0 +1,1076 @@
+perennial@perennial-ThinkPad-T430:~$ su
+Password: 
+root@perennial-ThinkPad-T430:/home/perennial# kubectl version --short --client
+Client Version: v1.20.1
+root@perennial-ThinkPad-T430:/home/perennial# aws-iam-authenticator
+aws-iam-authenticator: command not found
+root@perennial-ThinkPad-T430:/home/perennial# aws-iam-authenticator help
+aws-iam-authenticator: command not found
+root@perennial-ThinkPad-T430:/home/perennial# awscli
+awscli: command not found
+root@perennial-ThinkPad-T430:/home/perennial# aws --version
+root@perennial-ThinkPad-T430:/home/perennial# aws eks update-kubeconfig --root@root@perennial-ThinkPad-T430:/home/perennial# aws eks update-kubeconfig --name nginx-cluster
+Added new context arn:aws:eks:ap-south-1:846182034292:cluster/nginx-cluster to /root/.kube/config
+root@perennial-ThinkPad-T430:/home/perennial# cd /root/.kube/config 
+bash: cd: /root/.kube/config: Not a directory
+root@perennial-ThinkPad-T430:/home/perennial# cd /root/.kube/
+root@perennial-ThinkPad-T430:~/.kube# ls
+cache  config
+root@perennial-ThinkPad-T430:~/.kube# cat config 
+apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority: /root/.minikube/ca.crt
+    server: https://172.20.10.12:8443
+  name: minikube
+- cluster:
+    certificate-authority-data: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUN5RENDQWJDZ0F3SUJBZ0lCQURBTkJna3Foa2lHOXcwQkFRc0ZBREFWTVJNd0VRWURWUVFERXdwcmRXSmwKY201bGRHVnpNQjRYRFRJeE1ERXlOVEF5TWpBeE1Gb1hEVE14TURFeU16QXlNakF4TUZvd0ZURVRNQkVHQTFVRQpBeE1LYTNWaVpYSnVaWFJsY3pDQ0FTSXdEUVlKS29aSWh2Y05BUUVCQlFBRGdnRVBBRENDQVFvQ2dnRUJBS1QxClZneUZrcUZQYzI4VVV4aEhZNWRBMmIvTi9ML3psRnJraWpXdDYvZk80VmtwZzFCSDlkSXc4Q3NJL1B6N0VrU1AKVVBoTEVIWEl6YzV2NVlKSFNla01DRmE5UTF2L1JnVVFDL3paU2FCY1ZuMzIxbHZ4aDRFTkFMeWNxS09aa1JlZApjcXhxVXJiMGRMVUlZSEFJUm5rUm53Tk8xaytPbml5cEFvMUdxSzRzWUdBTnRLTHUzMUIxT0ZLcGFwOTdCcHNLCkFpdmo2UjBNOHl5NmNpdVh3L3N2SG1ONVZEdGFka3Byd01wS1NMN3EwMDlHRm41WHJQZlpsSkdUdDA1Tjc3bG0KMC84STVPZ0hZUE5rcWt4aXBZTjRyc3RyZ3hZRzJRRXdNdDBpcytxY3RSQ3FwOHdGWTRiZjF3MGlRbWF2eml1TwpYMHdOcUwyOGxjUm1YdVV0SUNVQ0F3RUFBYU1qTUNFd0RnWURWUjBQQVFIL0JBUURBZ0trTUE4R0ExVWRFd0VCCi93UUZNQU1CQWY4d0RRWUpLb1pJaHZjTkFRRUxCUUFEZ2dFQkFBV3B4UlUzakdqenRwYVpLdzFrMDQrUmcwZkEKV1NhdFA5WEkwVEdqZDd1aWRGOTFEYXJjMUM1RWx3a3pWYXRJaVpXNzBld25weWFoSGN1d3RjaEw4RzhkTUlRRgpjbHAyRU45czd1WEdKWDhRaDZCSjJMOXZFWHlma0d0MjJ2bWNrdGR2MjRRRnFhVk1kbGxYVDgvUGt6c3VaN1VDCnduUE1uVUN0M0gzWGhsZDVNRUpnQVpEd0R2VG9oV1FFNC9YVm5tejllditUMjlTWE5NZzNDV0J2dEhEZ1MrK1IKTWtEOVJmMzJtaVAvTEhCblVjbm5ER3hML3ovOHZ6VWw1ZElBSTNTekRsN3dZVkNlMnRSbEhJYjd2NWljZ0RuRQpkRW5ObWRNUFBpOGRlRzBEcjNOVUNiZmp6TTZLVktiWUV0bTgrMWIyNnFsZktabHJTbjlKN0hoNXorRT0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=
+    server: https://F1722F8D5DA49CA58432ED54AE5C2788.sk1.ap-south-1.eks.amazonaws.com
+  name: arn:aws:eks:ap-south-1:846182034292:cluster/nginx-cluster
+contexts:
+- context:
+    cluster: minikube
+    namespace: default
+    user: minikube
+  name: minikube
+- context:
+    cluster: arn:aws:eks:ap-south-1:846182034292:cluster/nginx-cluster
+    user: arn:aws:eks:ap-south-1:846182034292:cluster/nginx-cluster
+  name: arn:aws:eks:ap-south-1:846182034292:cluster/nginx-cluster
+current-context: arn:aws:eks:ap-south-1:846182034292:cluster/nginx-cluster
+kind: Config
+preferences: {}
+users:
+- name: minikube
+  user:
+    client-certificate: /root/.minikube/profiles/minikube/client.crt
+    client-key: /root/.minikube/profiles/minikube/client.key
+- name: arn:aws:eks:ap-south-1:846182034292:cluster/nginx-cluster
+  user:
+    exec:
+      apiVersion: client.authentication.k8s.io/v1alpha1
+      args:
+      - --region
+      - ap-south-1
+      - eks
+      - get-token
+      - --cluster-name
+      - nginx-cluster
+      command: aws
+root@perennial-ThinkPad-T430:~/.kube# cd ..
+root@perennial-ThinkPad-T430:~# ls
+Downloads  snap
+root@perennial-ThinkPad-T430:~# aws
+Note: AWS CLI version 2, the latest major version of the AWS CLI, is now stable and recommended for general use. For more information, see the AWS CLI version 2 installation instructions at: https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html
+
+usage: aws [options] <command> <subcommand> [<subcommand> ...] [parameters]
+To see help text, you can run:
+
+  aws help
+  aws <command> help
+  aws <command> <subcommand> help
+aws: error: the following arguments are required: command
+root@perennial-ThinkPad-T430:~# aws help
+root@perennial-ThinkPad-T430:~# aws eks update-kubeconfig --name nginx-cluster
+Updated context arn:aws:eks:ap-south-1:846182034292:cluster/nginx-cluster in /root/.kube/config
+root@perennial-ThinkPad-T430:~# history
+  680  npm run dev
+  681  node js
+  682  apt install nodejs-legacy
+  683  npm run dev
+  684  git add .
+  685  git commit -m "all files added"
+  686  git remote add https://github.com/DhirajGurav5959/Docker_learn.git
+  687  cd /opt/sonar-scanner/
+  688  ls
+  689  cd conf/
+  690  ls
+  691  cat sonar-scanner.properties 
+  692  apt-full upgrade
+  693  apt full-upgrade
+  694  do-release-upgrade
+  695  do-release-upgrade -d
+  696  do-release-upgrade 
+  697  reboot
+  698  do-realease-upgrade
+  699  lsb_release -a
+  700  docker ps
+  701  docker ps -a
+  702  docker start 0974f2074648
+  703  docker
+  704  doscker ps
+  705  docker ps
+  706  docker ps -a
+  707  docker start 2c9d76d13728
+  708  docker ps -a
+  709  docker start 14da80edd3c5
+  710  docker stop 2c9d76d13728
+  711  docker start 14da80edd3c5
+  712  docker stop 14da80edd3c5
+  713  docker ps -a
+  714  docker start 2c9d76d13728
+  715  docker logs 2c9d76d13728
+  716  apt-get update
+  717  swap
+  718  hostname
+  719  nano /etc/hostname 
+  720  ifconfig
+  721  nano /etc/network/interfaces
+  722  cat /etc/network/interfaces
+  723  nano /etc/host
+  724  nano /etc/hosts
+  725  ifconfig
+  726  ping www.google.com
+  727  apt-get install openssh-server
+  728  docker ps -a
+  729  docker start 0974f2074648
+  730  docker ps
+  731  docker ps -a
+  732  docker build -t flask-python
+  733  docker build flask-python
+  734  docker image build -t python-hello-world2 .
+  735  docker run -p 6001:6000 -d python-hello-world2
+  736  docker start 30e535f60ff70d1cd9a1643f4f99ed32eb1fc12c21fc8adc424733edcefd533d
+  737  docker ps -a
+  738  docker start db481238ab8b
+  739  sudo docker info
+  740  docker inspect  jenkins
+  741  sonar-scanner   -Dsonar.projectKey=go-project   -Dsonar.sources=.   -Dsonar.host.url=http://localhost:9000 \
+  742  sonar-scanner -Dsonar.host.url=http://localhost:9000 
+  743  exit
+  744  chmod +x xampp-linux-*-installer.run
+  745  wget https://www.apachefriends.org/xampp-files/5.6.20/xampp-linux-x64-5.6.20-0-installer.run
+  746  docker ps -a
+  747  docker start 88f4af013293
+  748  systemctl start logstash
+  749  systemctl start kibana
+  750  systemctl start filebeat
+  751  systemctl start nginx
+  752  systemctl start apache
+  753  systemctl start apache2
+  754  systemctl status apache2
+  755  systemctl status kibana
+  756  systemctl status logstash
+  757  systemctl status filebeat
+  758  systemctl status kibana
+  759  docker ps -a
+  760  systemctl status logstash
+  761  cd Desktop/
+  762  cd DevOps/
+  763  ls
+  764  mkdir Docker_elk_stack
+  765  cd Docker_elk_stack/
+  766  git clone https://github.com/deviantony/docker-elk.git
+  767  cd docker-elk/
+  768  docker-compose up -d
+  769  clear
+  770  ehq.org/wine-builds/ubuntu/
+  771  c https://dl.winehq.org/wine-builds/Release.key && sudo apt-key add Release.key
+  772  clear
+  773  sudo apt-get update && sudo apt-get install -y apt-transport-https curl
+  774  clear
+  775  sudo apt-get update && sudo apt-get install -y apt-transport-https curl
+  776  clear
+  777  ls
+  778  remove default 
+  779  delete default 
+  780  rm default 
+  781  ls
+  782  rename new-default default
+  783  touch default
+  784  nano default 
+  785  ls
+  786  rm new-default 
+  787  ls
+  788  systemctl restart nginx
+  789  journalctl -xe
+  790  sudo nginx -t
+  791  systemctl restart nginx
+  792  sudo killall apache2
+  793  systemctl restart nginx
+  794  systemctl status nginx
+  795  ls
+  796  nano default 
+  797  systemctl restart nginx
+  798  systemctl status nginx
+  799  sudo killall apache2
+  800  systemctl restart nginx
+  801  nano /etc/nginx/sites-available/default 
+  802  systemctl restart nginx
+  803  systemctl status nginx
+  804  nano /etc/nginx/sites-available/default 
+  805  systemctl restart nginx
+  806  nano /etc/filebeat/filebeat.yml 
+  807  sudo service filebeat start
+  808  systemctl status filebeat
+  809  cat /etc/filebeat/filebeat.yml 
+  810  cd /
+  811  cd /etc/filebeat/
+  812  ls
+  813  nano filebeat.yml 
+  814  apt install heartbeat
+  815  docker ps
+  816  docker ps -a
+  817  docker start 2c9d76d13728
+  818  ifconfig
+  819  /var/log
+  820  cd /var/log/
+  821  ls
+  822  cd 
+  823  cd /var/
+  824  ls
+  825  cd /lib
+  826  ls
+  827  curl -XGET 'localhost:9200/_cat/indices?v&pretty'
+  828  sudo apt-get update && sudo apt-get install -y apt-transport-https curl
+  829  curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+  830  sudo apt-get update
+  831  sudo apt-get install -y kubelet kubeadm kubectl
+  832  sudo apt-mark hold kubelet kubeadm kubectl
+  833  claer
+  834  clear
+  835  sudo apt-get update
+  836  apt purge wine
+  837  sudo apt-get update
+  838  apt-get install -y apt-transport-https
+  839  systemctl enable docker
+  840  apt-get install curl
+  841  sudo curl -s https://packages.cloud.google.com/apt/doc/apt-key-gpg | sudo apt-key add
+  842  sudo curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg| sudo apt-key add
+  843  chmod 777 /etc/apt/sources.list.d/
+  844  nano kubernetes.list
+  845  cat kubernetes.list 
+  846  cd /etc/apt/sources.list.d/
+  847  ls
+  848  nano kubernetes.list
+  849  cat kubernetes.list 
+  850  apt-get update
+  851  apt-get install -y kubelet kubeadm kubectl kubernetes-cni
+  852  swapoff -a
+  853  sudo kubeadm init
+  854  docker pull docker.elastic.co/elasticsearch/elasticsearch:7.5.2
+  855  docker run -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch:7.5.2
+  856  docker pull kibana
+  857  docker run -d --name kibana --net somenetwork -p 5601:5601 kibana:tag
+  858  docker run -d --name kibana --net somenetwork -p 5601:5601 kibana
+  859  docker run -d --name kibana --net somenetwork -p 5601:5601 kibana:latest
+  860  docker pull kibana:latest
+  861  docker pull kibana:latestdocker run -d --name kibana --net somenetwork -p 5601:5601 kibana:latest
+  862  docker pull kibana:latest
+  863  docker pull kibana
+  864  docker pull kibana:7.10.1
+  865  docker network create somenetwork
+  866  docker run -d --name kibana --net somenetwork -p 5601:5601 kibana:7.10.1
+  867  systemctl stop kibana
+  868  docker run -d --name kibana --net somenetwork -p 5601:5601 kibana:7.10.1
+  869  docker run -d --name kibana1 --net somenetwork -p 5601:5601 kibana:7.10.1
+  870  docker ps
+  871  apt uninstall kibana
+  872  apt-get remove --purge kibana
+  873  docker ps
+  874  docker stop 95a3f1c177bc
+  875  docker start 95a3f1c177bc
+  876  docker stop 95a3f1c177bc
+  877  docker stop 9de2b07c8ee8
+  878  apt-get -y install nginx
+  879  apt-get install kibana
+  880  apt-get install logstash
+  881  apt-get install filebeat
+  882  apt-get install elasticsearch
+  883  apt update
+  884  systemctl start logstash 
+  885  systemctl status logstash 
+  886  systemctl status kibana
+  887  systemctl restart  kibana
+  888  systemctl status  kibana
+  889  systemctl status  filebeat
+  890  nano /etc/elasticsearch/
+  891  nano /etc/elasticsearch/elasticsearch.yml 
+  892  systemctl restart elasticsearch
+  893  systemctl status elasticsearch
+  894  curl www.google.com
+  895  curl localhost:9200
+  896  nano /etc/kibana/kibana.yml 
+  897  systemctl restart  kibana
+  898  systemctl status kibana
+  899  htpasswd -c /etc/nginx/htpasswd.users
+  900  cd /etc/nginx/
+  901  ls
+  902  htpasswd -c /etc/nginx/htpasswd.users kibana
+  903  mv /etc/nginx/sites-available/default /etc/nginx/sites-available/new-default
+  904  nano /etc/nginx/sites-available/new-default 
+  905  nano /etc/nginx/sites-available/default 
+  906  systemctl restart nginx
+  907  nano /etc/nginx/sites-available/default 
+  908  systemctl restart nginx
+  909  journalctl -xe
+  910  systemctl restart nginx
+  911  sudo systemctl start nginx.service
+  912  nano /etc/nginx/sites-available/default 
+  913  systemctl restart nginx
+  914  curl -L -O https://artifacts.elastic.co/downloads/apm-server/apm-server-7.10.1-darwin-x86_64.tar.gz
+  915  tar xzvf apm-server-7.10.1-darwin-x86_64.tar.gz
+  916  cd apm-server-7.10.1-darwin-x86_64/
+  917  ls
+  918  nano apm-server.yml 
+  919  ./apm-server -e
+  920  nano apm-server.yml 
+  921  ./apm-server -e
+  922  apm-server -e
+  923  ./apm-server -e
+  924  apm-server -e
+  925  ls
+  926  apm-server
+  927  nano apm-server.yml 
+  928  ./apm-server -e
+  929  curl -L -O https://artifacts.elastic.co/downloads/apm-server/apm-server-7.10.1-linux-x86_64.tar.gz
+  930  tar xzvf apm-server-7.10.1-linux-x86_64.tar.gz
+  931  ls
+  932  nano output.elasticsearch:
+  933  nano apm-server.yml 
+  934  ./apm-server -e
+  935  cd /
+  936  ls
+  937  cd home/
+  938  cd perennial/
+  939  cd Desktop/
+  940  cd DevOps/
+  941  cd elk\ stack/
+  942  curl -L -O https://artifacts.elastic.co/downloads/apm-server/apm-server-7.10.1-amd64.deb
+  943  sudo dpkg -i apm-server-7.10.1-amd64.deb
+  944  ls
+  945  service apm-server start
+  946  lsq
+  947  curl -L -O https://artifacts.elastic.co/downloads/apm-server/apm-server-7.10.1-amd64.deb
+  948  sudo apt-get install apm-server
+  949  sudo service apm-server start
+  950  curl -XGET 'localhost:9200/_cat/indices?v&pretty'
+  951  mkdir APM
+  952  cd APM
+  953  mkdir /demoapp
+  954  mkdir demoapp
+  955  cd demoapp/
+  956  npm init
+  957  apt install npm
+  958  npm init
+  959  npm install express --save-dev
+  960  npm install elastic-apm-node --save
+  961  sudo vim index.js
+  962  node index.js
+  963  sudo nano index.js
+  964  node index.js
+  965  ls
+  966  cd Desktop/
+  967  cd DevOps/
+  968  cd elk\ stack/
+  969  ls
+  970  cd new\ elk\ tutorials\ depth/
+  971  cd new/
+  972  cd \[DesireCourse.Net\]\ Udemy\ -\ Elasticsearch\ 7\ and\ the\ Elastic\ Stack\ -\ In\ Depth\ \&\ Hands\ On\!/
+  973  ls
+  974  mkdir bin
+  975  nano curl
+  976  cd /usr/
+  977  pws
+  978  pwd
+  979  mkdir bin
+  980  cd bin/
+  981  ls
+  982  nano curl
+  983  cat curl
+  984  clear
+  985  cd ..
+  986  ls
+  987  cd ..
+  988  ls
+  989  cd perennial/
+  990  mkdir bin
+  991  cd bin/
+  992  nano curl
+  993  chmod a+x curl
+  994  cd ~
+  995  source.profile
+  996  source .profile
+  997  which curl
+  998  curl -XPUT /home/perennial/Desktop/DevOps/elk\ stack/new_elk/ml-latest-small/
+  999  curl -XPUT /home/perennial/Desktop/DevOps/elk\ stack/new_elk/ml-latest-small -d '
+ 1000  {
+ 1001  	"mapping": {
+ 1002  		"properties": {
+ 1003  			"year": {
+ 1004  				"type": "date"
+ 1005                                }
+ 1006                  }
+ 1007         }
+ 1008  }'
+ 1009  curl -XPUT /home/perennial/Desktop/DevOps/elk\ stack/new_elk/ml-latest-small -d '
+ 1010  {
+ 1011  	"mappings": {
+ 1012  		"properties": {
+ 1013  			"year": {
+ 1014  				"type": "date"
+ 1015                                }
+ 1016                  }
+ 1017         }
+ 1018  }'
+ 1019  exit
+ 1020  cd Desktop/cd Desktop/cd..
+ 1021  cd Desktop/
+ 1022  cd DevOps/
+ 1023  ls
+ 1024  cd Blue\ \&\ Green\ Deployment/
+ 1025  clear
+ 1026  ssh -i ./loadbalance.pem ec2-user@13.232.120.164
+ 1027  ssh -i ./loadbalance.pem ec2-user@13.233.179.144
+ 1028  sudo apt-get uoadte
+ 1029  sudo apt-get upadte
+ 1030  sudo apt upadte
+ 1031  sudo apt update
+ 1032  curl -XPUT 127.0.0.1:9200/movies -d
+ 1033  curl -XPUT 127.0.0.1:9200/movie
+ 1034  curl -XPUT 127.0.0.1:9200/movies -d '
+ 1035  {
+ 1036  	"mapping": {
+ 1037  		"properties": {
+ 1038  			"year": {
+ 1039  				"type":"date"
+ 1040                                 }
+ 1041                               }
+ 1042                     }
+ 1043  }'
+ 1044  curl -XPUT 127.0.0.1:9200/movies -d '
+ 1045  {
+ 1046  	"mapping": {
+ 1047  		"properties": {
+ 1048  			"year": {
+ 1049  				"type":"date"
+ 1050                                 }
+ 1051                               }
+ 1052                     }
+ 1053  }'
+ 1054  sudo apt install nodejs
+ 1055  node -v
+ 1056  sudo apt install npm
+ 1057  npm install -g create-react-app
+ 1058  systemctl start logstash
+ 1059  systemctl status logstash
+ 1060  systemctl start nginx
+ 1061  systemctl start kibana
+ 1062  systemctl start filebeat
+ 1063  nano /etc/logstash/logstash.yml
+ 1064  systemctl start elasticsearch
+ 1065  systemctl status elasticsearch
+ 1066  docker pull node
+ 1067  node -v
+ 1068  docker pull node
+ 1069  cd Desktop/
+ 1070  cd ..
+ 1071  cd Desktop/
+ 1072  cd DevOps/
+ 1073  cd Blue\ \&\ Green\ Deployment/
+ 1074  ssh -i ./loadbalance.pem ec2-user@13.232.120.164
+ 1075  s
+ 1076  ssh -i ./loadbalance2.pem ec2-user@15.206.171.48 
+ 1077  cd Desktop/DevOps/Blue\ \&\ Green\ Deployment/
+ 1078  ssh -i ./loadbalance2.pem ec2-user@15.206.171.48 
+ 1079  ssh -i ./loadbalance.pem ec2-user@13.233.179.144
+ 1080  ssh -i ./new-blue.pem ec2-user@13.233.179.144
+ 1081  ssh -i ./new-blue.pem ubuntu@13.233.179.144
+ 1082  claer
+ 1083  clear
+ 1084  ec2-user@13.233.179.144: Permission denied (publickey).
+ 1085  clear
+ 1086  sudo pip install boto
+ 1087  sudo apt install pip
+ 1088  sudo apt install python-pip
+ 1089  sudo apt install python3-pip
+ 1090  sudo pip install boto
+ 1091  pip --version
+ 1092  pip3 --version
+ 1093  pip3 install awscli 
+ 1094  aws --vrsion
+ 1095  aws --version
+ 1096  pip install boto
+ 1097  pip3 install boto
+ 1098  sudo apt update
+ 1099  sudo apt -y install wget
+ 1100  wget https://dev.mysql.com/get/mysql-apt-config_0.8.15-1_all.deb
+ 1101  ls -lh mysql-apt-config_0.8.15-1_all.deb 
+ 1102  sudo apt install ./mysql-apt-config_0.8.15-1_all.deb
+ 1103  apt --fix-broken install
+ 1104  sudo apt install ./mysql-apt-config_0.8.15-1_all.deb
+ 1105  sudo dpkg -i mysql-apt-config_0.8.15-1_all.deb
+ 1106  sudo apt install mysql-workbench-community
+ 1107  sudo apt install ./mysql-apt-config_0.8.15-1_all.deb
+ 1108  sudo dpkg -i mysql-apt-config_0.8.15-1_all.deb
+ 1109  apt get update
+ 1110  apt  update
+ 1111  sudo dpkg -i mysql-apt-config_0.8.15-1_all.deb
+ 1112  mysqldump --databases database1 -h database-2.c248lxyyugtl.ap-south-1.rds.amazonaws.com -u admin -P 3306 -p > rds.sql
+ 1113  apt install mysql-client-core-8.0
+ 1114  mysqldump --databases database1 -h database-2.c248lxyyugtl.ap-south-1.rds.amazonaws.com -u admin -P 3306 -p > rds.sql
+ 1115  ls
+ 1116  aws configure
+ 1117  aws s3 ls
+ 1118  aws ec2 describe-instances
+ 1119  cd Desktop/DevOps/
+ 1120  ls
+ 1121  cd aws-s3-bacup/
+ 1122  git clone https://github.com/mittsh/db-s3-backup
+ 1123  ls
+ 1124  mkdir aws_final_folder
+ 1125  cd aws_final_folder/
+ 1126  ls
+ 1127  nano db_backup_config.json
+ 1128  cat db_backup_config.json 
+ 1129  import pandas as pd
+ 1130  pycharm-community
+ 1131  aws s3 cAp
+ 1132  cd ..
+ 1133  python3 s3_upload.py 
+ 1134  pwd
+ 1135  ls
+ 1136  pwd
+ 1137  python3 s3_upload.py 
+ 1138  aws s3
+ 1139  aws rds
+ 1140  exit
+ 1141  la
+ 1142  python3 create_RDS_DB.py 
+ 1143  pip3 install boto3
+ 1144  python3 create_RDS_DB.py 
+ 1145  pip3 install ConfigParser
+ 1146  pip3 install os
+ 1147  pip3 install time
+ 1148  pip3 install getpass
+ 1149  python3 create_RDS_DB.py 
+ 1150  ls
+ 1151  aws s3 cp
+ 1152  aws
+ 1153  apt update
+ 1154  aws
+ 1155  aws configure
+ 1156  python3 db_s3_backup.py 
+ 1157  python /path/to/db_s3_backup.py /path/to/your/db_backup_dir/ /path/to/db_backup_config.json -c --delete-remote --delete-local -v
+ 1158  python ./db_s3_backup.py ./ ./db_backup_config.json -c --delete-remote --delete-local -v
+ 1159  pip3 install boto
+ 1160  python ./db_s3_backup.py ./ ./db_backup_config.json -c --delete-remote --delete-local -v
+ 1161  cat db_s3_backup.py 
+ 1162  python3 ./db_s3_backup.py ./ ./db_backup_config.json -c --delete-remote --delete-local -v
+ 1163  sudo snap install pycharm-community --classic
+ 1164  pycharm-community
+ 1165  python3 aws_rds_sysnc.py 
+ 1166  pip install pandas
+ 1167  pip3 install pandas
+ 1168  python3 aws_rds_sysnc.py 
+ 1169  pip install pymysql
+ 1170  pip3 install pymysql
+ 1171  python3 aws_rds_sysnc.py 
+ 1172  pip3 install sqlalchemy
+ 1173  python3 aws_rds_sysnc.py 
+ 1174  clear
+ 1175  sudo apt update
+ 1176  sudo apt install apt-transport-https ca-certificates curl software-properties-common
+ 1177  curl -fsSL https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
+ 1178  sudo add-apt-repository "deb https://download.sublimetext.com/ apt/stable/"
+ 1179  sudo apt install sublime-text
+ 1180  ls
+ 1181  cd ..
+ 1182  ls
+ 1183  ssh admin_user@18.138.89.23
+ 1184  ssh admin_user@18.138.89.23
+ 1185  aws
+ 1186  pip uninstall awscli
+ 1187  pip3 uninstall awscli
+ 1188  aws --version
+ 1189  aws s3
+ 1190  pip install --user virtualenv
+ 1191  pip3 install --user virtualenv
+ 1192  virtualenv ~/cli-ve
+ 1193  apt install python3-virtualenv
+ 1194  virtualenv ~/cli-ve
+ 1195  pip install --upgrade awscli
+ 1196  pip3 install --upgrade awscli
+ 1197  awscli
+ 1198  aws
+ 1199  asw s3
+ 1200  aws --version
+ 1201  aws config
+ 1202  aws configure
+ 1203  aws rds
+ 1204  aws help
+ 1205  aws 
+ 1206  aws s3
+ 1207  aws s3 ls
+ 1208  cd Desktop/
+ 1209  cd DevOps/
+ 1210  cd aws-s3-bacup/
+ 1211  cd new_aws/
+ 1212  ls
+ 1213  aws s3 cp
+ 1214  python3 s3_upload.py 
+ 1215  ls
+ 1216  pwd
+ 1217  python3 s3_upload.py 
+ 1218  ls
+ 1219  python3 create_RDS_DB.py 
+ 1220  python3 s3_upload.py 
+ 1221  python3 create_RDS_DB.py 
+ 1222  python3 s3_upload.py 
+ 1223  python3 create_RDS_DB.py 
+ 1224  python3 s3_upload.py 
+ 1225  python3 create_RDS_DB_v2.py 
+ 1226  ls
+ 1227  python mysql_dump_server.py 
+ 1228  exit
+ 1229  ssh user_admin@18.138.89.23 
+ 1230  [13:47] Husain Mithaiwala
+ 1231  ssh admin_user@18.138.89.23
+ 1232  ssh admin_user@18.138.89.23
+ 1233  python3 mysql_dump_server.py 
+ 1234  pip3 install ssh2-python
+ 1235  ls
+ 1236  cd ..
+ 1237  ls
+ 1238  cd mysql-production_server_backup/
+ 1239  python3 ssh_python.py 
+ 1240  pip3 install Session
+ 1241  pip3 install socket
+ 1242  python3 ssh_python.py 
+ 1243  pip3 install paramiko
+ 1244  python3 ssh_python2.py  
+ 1245  ls
+ 1246  cd ..
+ 1247  cd aws-s3-bacup/
+ 1248  cd ..
+ 1249  ls
+ 1250  cd mysql-production_server_backup/
+ 1251  python3 ssh_connection1.py 
+ 1252  ssh-keygen
+ 1253  ssh-copy-id admin_user@18.138.89.23
+ 1254  ssh admin-user@18.138.89.23
+ 1255  ssh admin_user@18.138.89.23
+ 1256  cd Desktop/
+ 1257  cd DevOps/
+ 1258  cd mysql-production_server_backup/
+ 1259  ls
+ 1260  python3 ssh_python2.py
+ 1261  python3 ssh_python.py
+ 1262  cd ..
+ 1263  ls
+ 1264  cd aws-s3-bacup/
+ 1265  ls
+ 1266  cd new_aws/
+ 1267  ls
+ 1268  python3 ssh_connection.py 
+ 1269  cd new_aws/ssh admin_user@8.138.89.23
+ 1270  ssh admin_user@18.138.89.23
+ 1271  la
+ 1272  ls
+ 1273  python3 ssh_connection.py 
+ 1274  python3 final_connection.py 
+ 1275  pwd
+ 1276  ls
+ 1277  pwd
+ 1278  python3 final_connection.py 
+ 1279  ssh admin_user@18.138.89.23
+ 1280  ls
+ 1281  python3 new_connection.py 
+ 1282  cd ..
+ 1283  cd mysql-production_server_backup/
+ 1284  cd backup/
+ 1285  ls
+ 1286  python3 new_connection.py 
+ 1287  ls
+ 1288  python3 new_connection.py 
+ 1289  cd ..
+ 1290  ls
+ 1291  cd aws-s3-bacup/
+ 1292  cd new_aws/
+ 1293  python3 s3_upload.py 
+ 1294  python3 s3_sql_upload.py 
+ 1295  cd ..
+ 1296  ls
+ 1297  cd mysql-production_server_backup/
+ 1298  ls
+ 1299  python3 s3_sql_upload.py 
+ 1300  apt install mysql
+ 1301  mysql
+ 1302  sudo apt install mysql-server
+ 1303  mkdir app
+ 1304  cd app/
+ 1305  nano demo.py
+ 1306  ssh ec2_user@ec2-65-0-74-109.ap-south-1.compute.amazonaws.com
+ 1307  ssh ec2-user@ec2-65-0-74-109.ap-south-1.compute.amazonaws.com
+ 1308  python -m venv venv
+ 1309  python3 -m venv venv
+ 1310  apt-get install python3-venv
+ 1311  docker
+ 1312  sudo unshare -n sudo teams
+ 1313  sudo unshare -n sudo Microsoft Teams
+ 1314  sudo unshare -n sudo MicrosoftTeams
+ 1315  sudo unshare -n sudo Teams
+ 1316  sudo unshare -n sudo teams
+ 1317  sudo share -n sudo teams
+ 1318  sudo share teams
+ 1319  python3 -v
+ 1320  python3 --version
+ 1321  awscli
+ 1322  pip3 install awscli
+ 1323  cd Desktop/
+ 1324  cd DevOps/
+ 1325  cd aws
+ 1326  ls
+ 1327  cd Aws L
+ 1328  ls
+ 1329  cd Aws\ Automation\ Using\ Boto3\ Python_How\ To\ Delete\ Objects\ From\ Aws\ S3\ Bucket\ Using\ Boto3\ Python_Part_9.mp4L
+ 1330  ls
+ 1331  ssh -i ./new-blue.pem ubuntu@ec2-65-0-74-109.ap-south-1.compute.amazonaws.com
+ 1332  python3 -m venv venv
+ 1333  source venv/bin/active
+ 1334  pip3 install boto3 pprint awscli
+ 1335  aws configure
+ 1336  python
+ 1337  python3
+ 1338  aws
+ 1339  aws help
+ 1340  pip3 install boto3
+ 1341  pip3 install boto3 --upgrade
+ 1342  python3 final.py 
+ 1343  ls
+ 1344  rm amrey_DevOps_training/
+ 1345  rmdir amrey_DevOps_training/
+ 1346  rmdir -rf amrey_DevOps_training/
+ 1347  cd amrey_DevOps_training/
+ 1348  ls
+ 1349  rmdir amrey_DevOps_training
+ 1350  ls
+ 1351  cd ..
+ 1352  ls
+ 1353  rmdir amrey_DevOps_training
+ 1354  rmdir BitBucket/
+ 1355  cd BitBucket/
+ 1356  ls
+ 1357  rm demo1.py demo.txt 
+ 1358  rmdir demo-repo/
+ 1359  rm -rf demo-repo/
+ 1360  cd ..
+ 1361  rm -rf BitBucket/
+ 1362  ls
+ 1363  rm -rf amrey_DevOps_training/
+ 1364  ls
+ 1365  rm -rf docker-elk/
+ 1366  rm -rf final/
+ 1367  rm -rf helloteam/
+ 1368  rm demo2.py 
+ 1369  rm -rf DevOps1/
+ 1370  cd ..
+ 1371  ls
+ 1372  cd perennial/
+ 1373  ls
+ 1374  rm apm-server-7.10.1-darwin-x86_64/
+ 1375  rm -rf apm-server-7.10.1-darwin-x86_64/
+ 1376  rm -rf final_integration/
+ 1377  rm -rf Github/
+ 1378  rm -rf PetClinic/
+ 1379  rm -rf docker-elk/
+ 1380  systemctl status kibana
+ 1381  systemctl start kibana
+ 1382  systemctl status kibana
+ 1383  systemctl start logstash
+ 1384  systemctl start elasticsearch
+ 1385  systemctl status elasticsearch
+ 1386  clear
+ 1387  pip3 install ipython
+ 1388  clear
+ 1389  curl -o kubectl https://amazon-eks.s3.us-west-2.amazonaws.com/1.18.9/2020-11-02/bin/darwin/amd64/kubectl
+ 1390  pip3 install pywahtkit
+ 1391  pip3 install pywhatkit
+ 1392  cd Desktop/
+ 1393  ls
+ 1394  python3 main.py
+ 1395  sudo apt-get install python3-tk python3-dev
+ 1396  python3 main.py
+ 1397  python
+ 1398  python3
+ 1399  minikube dashboard
+ 1400  curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube_latest_amd64.deb
+ 1401  sudo dpkg -i minikube_latest_amd64.deb
+ 1402  curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube_latest_amd64.deb
+ 1403  minikube start
+ 1404  docker
+ 1405  minikube start
+ 1406  docker driver
+ 1407  minikube start --driver=docker
+ 1408  docker system prune
+ 1409  exit
+ 1410  apt-get install htperkit
+ 1411  groupadd docker
+ 1412  usermod -aG docker $USER
+ 1413  newgrp docker
+ 1414  exit
+ 1415  docker pull python
+ 1416  kubectl describe pod my-minio | grep 'SECRET\|ACCESS'
+ 1417  Get the ACCESS_KEY=$(kubectl get secret my-release4-minio -o jsonpath="{.data.accesskey}" | base64 --decode) and the SECRET_KEY=$(kubectl get secret my-release4-minio -o jsonpath="{.data.secretkey}" | base64 --decode)
+ 1418  locate config.json
+ 1419  locate .minio/config.json
+ 1420  clear
+ 1421  kubectl get secret my-release4-minio -o jsonpath="{.data.accesskey}
+ 1422  helm install my-release minio/minio
+ 1423  helm install my-release1 minio/minio
+ 1424  Get the ACCESS_KEY=$(kubectl get secret my-release4-minio -o jsonpath="{.data.accesskey}" | base64 --decode) and the SECRET_KEY=$(kubectl get secret my-release4-minio -o jsonpath="{.data.secretkey}" | base64 --decode)
+ 1425  kubectl get secret my-release4-minio -o jsonpath="{.data.accesskey}" 
+ 1426  kubectl get secret my-release4-minio -o jsonpath="{.data.secretkey}"
+ 1427  clear
+ 1428  helm install --set accessKey=myaccesskey,secretKey=mysecretkey --generate-name minio/minio
+ 1429  kubectl get pod
+ 1430  kubectl 
+ 1431  kubectl explain my-minio 
+ 1432  kubectl explain my-minio-5948585b96-9z5w4 
+ 1433  kubectl get secret my-minio -o jsonpath="{.data.accesskey}" 
+ 1434  Get the ACCESS_KEY=$(kubectl get secret my-release4-minio -o jsonpath="{.data.accesskey}" | base64 --decode) and the SECRET_KEY=$(kubectl get secret my-release4-minio -o jsonpath="{.data.secretkey}" | base64 --decode)
+ 1435  Get the ACCESS_KEY=$(kubectl get secret my-release4-minio -o jsonpath="{.data.accesskey}" | base64 --decode) and the SECRET_KEY=$(kubectl get secret my-release4-minio -o jsonpath="{.data.secretkey}" | base64 --decode
+ 1436  clear
+ 1437  kubectl get secret my-release4-minio -o jsonpath="{.data.accesskey}" | base64 --decode) and the SECRET_KEY=$(kubectl get secret my-release4-minio -o jsonpath="{.data.secretkey}" | base64 --decode
+ 1438  kubectl get secret my-release4-minio -o jsonpath="{.data.accesskey}" | base64 --decode) and the SECRET_KEY=$(kubectl get secret my-release4-minio -o jsonpath="{.data.secretkey}" | base64 --decode)
+ 1439  kubectl get secret my-minio -o jsonpath="{.data.accesskey}" | base64 --decode
+ 1440  kubectl get secret my-release4-minio -o jsonpath="{.data.secretkey}"
+ 1441  kubectl get secret my-minio -o jsonpath="{.data.secretkey}"
+ 1442  kubectl get secret my-minio -o jsonpath="{.data.accesskey}" 
+ 1443  kubectl get secret my-minio -o jsonpath="{.data.secretkey}"
+ 1444  kubectl get secret my-release4-minio -o jsonpath="{.data.accesskey}" | base64 --decode) and the SECRET_KEY=$(kubectl get secret my-release4-minio -o jsonpath="{.data.secretkey}" | base64 --decode)
+ 1445  mc alias set my-minio-local http://localhost:9000 "$ACCESS_KEY" "$SECRET_KEY" --api s3v4
+ 1446  10
+ 1447  1o
+ 1448  10
+ 1449  ls
+ 1450  kubectl apply -f mongo-deployment-statefulset.yaml 
+ 1451  cat mongo-deployment-statefulset.yaml 
+ 1452  kubectl get secrets
+ 1453  vi mongo-deployment-statefulset.yaml 
+ 1454  ls
+ 1455  nano mongo-deployment-statefulset.yaml 
+ 1456  kubectl get pod
+ 1457  ls
+ 1458  vi mongo-deployment-statefulset.yaml 
+ 1459  cat mongo-secret.yaml 
+ 1460  kubectl apply -f mongo-deployment-statefulset.yaml 
+ 1461  cat mongo-deployment-statefulset.yaml 
+ 1462  cat mongo-secret.yaml 
+ 1463  kubectl apply -f mongo-secret.yaml 
+ 1464  kubectl apply -f mongo-deployment-statefulset.yaml 
+ 1465  docker mages
+ 1466  docker images
+ 1467  kubectl get secret
+ 1468  kubectl apply -f mongo-deployment-statefulset.yaml 
+ 1469  kubectl get namespace
+ 1470  kubectl cluster info
+ 1471  kubectl cluster-info
+ 1472  kubectl create namespace my-namespace
+ 1473  kubectl get  namespace
+ 1474  curl -L https://istio.io/downloadIstio | sh -
+ 1475  ls
+ 1476  cd istio-1.8.1/
+ 1477  export PATH=$PWD/bn:$PATH
+ 1478  istioctl install --set profile=demo -y
+ 1479  istioctl
+ 1480  istioctl 
+ 1481  istioctl install
+ 1482  curl -L https://istio.io/downloadIstio | sh -
+ 1483  cd istio-1.8.1/
+ 1484  cd bin/
+ 1485  export PATH=$PWD
+ 1486  pwd
+ 1487  export PATH="$PATH:/home/perennial/istio-1.8.1/istio-1.8.1/bin"
+ 1488  istioctl x precheck
+ 1489  istioctl install --set profile=demo -y
+ 1490  kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.8/samples/bookinfo/platform/kube/bookinfo.yaml
+ 1491  istioctl install --set profile=demo -y
+ 1492  cd Desktop/
+ 1493  cd Dev-OPs/
+ 1494  cd kubernetes/
+ 1495  curl -L https://istio.io/downloadIstio | sh -
+ 1496  ls
+ 1497  cd istio-1.8.1/
+ 1498  pwd
+ 1499  export PATH="$PATH:/home/perennial/Desktop/Dev-OPs/kubernetes/istio-1.8.1/bin"
+ 1500  istioctl x precheck
+ 1501  istioctl install --set profile=demo -y
+ 1502  ls
+ 1503  kubectl apply -f samples/bookinfo/platform/kube/bookinfo.yaml
+ 1504  cd ..
+ 1505  kubectl apply -f samples/bookinfo/platform/kube/bookinfo.yaml
+ 1506  kubectl apply -f samples.yaml
+ 1507  istioctl install --set profile=demo -y
+ 1508  cd Docker
+ 1509  docker build -t dhiraj5959/web
+ 1510  docker build -t dhiraj5959/web .
+ 1511  docker push dhiraj5959/web 
+ 1512  docker images
+ 1513  docker build -t dhiraj5959/web .
+ 1514  git remote
+ 1515  git delete remote
+ 1516  git init
+ 1517  git add .
+ 1518  git commit -m "added files"
+ 1519  git branch -M main
+ 1520  git remote add origin https://github.com/dhiraj-perennialsys/kubernetes.git
+ 1521  git remote add origin-kuber https://github.com/dhiraj-perennialsys/kubernetes.git
+ 1522  git push -u origin-kuber main
+ 1523  git add k8s_python_sample_code-master/
+ 1524  git commit -m "added files"
+ 1525  git push -u origin-kuber main
+ 1526  kubectl get pods
+ 1527  kubectl create deployment my-deploy --image=nginx
+ 1528  kubectl get deployment
+ 1529  kubectl get replicaset
+ 1530  kubectl logs my-deploy
+ 1531  kubectl logs details
+ 1532  kubectl  get deplpoyment
+ 1533  kubectl  get deployments
+ 1534  helm
+ 1535  kubectl
+ 1536  istioctl
+ 1537  git
+ 1538  docker
+ 1539  javac
+ 1540  clear
+ 1541  docker login
+ 1542  docker push Dhiraj5959/web
+ 1543  docker push dhiraj5959/web
+ 1544  kubectl apply -f install/kubernetes/helm/istio/templates/crds.yaml
+ 1545  minikube start --memory=8192 --cpus=4 --kubernetes-version=v1.10.0 --extra-config=controller-manager.cluster-signing-cert-file="/var/lib/localkube/certs/ca.crt" --extra-config=controller-manager.cluster-signing-key-file="/var/lib/localkube/certs/ca.key" --vm-driver=virtualbox
+ 1546  minikube start --memory=8192 --cpus=4 --kubernetes-version=v1.16.0 --extra-config=controller-manager.cluster-signing-cert-file="/var/lib/localkube/certs/ca.crt" --extra-config=controller-manager.cluster-signing-key-file="/var/lib/localkube/certs/ca.key" --vm-driver=virtualbox
+ 1547  minikube start --memory=8192 --cpus=4 --kubernetes-version=v1.20.0 --extra-config=controller-manager.cluster-signing-cert-file="/var/lib/localkube/certs/ca.crt" --extra-config=controller-manager.cluster-signing-key-file="/var/lib/localkube/certs/ca.key" --vm-driver=virtualbox
+ 1548  minikube start --memory=8192 --cpus=4 --kubernetes-version=v1.20.0 --extra-config=controller-manager.cluster-signing-cert-file="/var/lib/localkube/certs/ca.crt" --extra-config=controller-manager.cluster-signing-key-file="/var/lib/localkube/certs/ca.key" --vm-driver=virtualbox
+ 1549  minikube start --memory=6192 --cpus=4 --kubernetes-version=v1.20.0 --extra-config=controller-manager.cluster-signing-cert-file="/var/lib/localkube/certs/ca.crt" --extra-config=controller-manager.cluster-signing-key-file="/var/lib/localkube/certs/ca.key" --vm-driver=virtualbox
+ 1550  minikube start --memory=6192 --cpus=4 --kubernetes-version=v1.20.0 --extra-config=controller-manager.cluster-signing-cert-file="/var/lib/localkube/certs/ca.crt" --extra-config=controller-manager.cluster-signing-key-file="/var/lib/localkube/certs/ca.key" \
+ 1551  curl -L https://git.io/getLatestIstio | sh -
+ 1552  ls
+ 1553  cd istio-1.8.1/
+ 1554  ls
+ 1555  cd ..
+ 1556  ls
+ 1557  gzip -d istio-1.8.2-linux-amd64.tar.gz 
+ 1558  curl -L https://git.io/getLatestIstio | sh -
+ 1559  ls
+ 1560  cd istio-1.8.2
+ 1561  ls
+ 1562  ls
+ 1563  cd istio-1.8.2-linux-amd64
+ 1564  kubectl apply -k ./
+ 1565  ls
+ 1566  cd ..
+ 1567  ls
+ 1568  kubectl apply -k ./
+ 1569  cd Blue-Green\ Project/
+ 1570  kubectl apply -k ./
+ 1571  kubectl get all --namespace hotel
+ 1572  clear
+ 1573  cd ..
+ 1574  ls
+ 1575  clear
+ 1576  kubectl apply -f https://github.com/knative/operator/releases/download/v0.20.0/operator.yaml
+ 1577  cd Desktop/
+ 1578  mkdir Blue-Green Deployment
+ 1579  ls
+ 1580  cd Blue-Green
+ 1581  ls
+ 1582  nano app-v1.yaml
+ 1583  nano haproxy-ingress.yaml
+ 1584  nano app.yaml
+ 1585  nano app-service.yaml
+ 1586  nano ingress.yaml
+ 1587  kubectl apply -f app.yaml -f app-service.yaml -f ingress.yaml
+ 1588  kubectl get svc haproxy-ingress -n haproxy-controller
+ 1589  kubectl apply -f haproxy-ingress.yaml 
+ 1590  kubectl get svc haproxy-ingress -n haproxy-controller
+ 1591  kubectl get svc haproxy-ingress -n haproxy-configmap
+ 1592  kubectl apply -f haproxy-ingress.yaml 
+ 1593  kubectl get svc haproxy-ingress -n haproxy-controller
+ 1594  kubectl apply -f https://cdn.haproxy.com/documentation/kubernetes/1.4/haproxy-ingress.hapee.yaml
+ 1595  helm repo add haproxytech https://haproxytech.github.io/helm-charts
+ 1596  helm repo update
+ 1597  helm install kubernetes-ingress haproxytech/kubernetes-ingress   --set controller.imageCredentials.registry=kubernetes-registry.haproxy.com   --set controller.imageCredentials.username=<KEY>   --set controller.imageCredentials.password=<KEY>   --set controller.image.repository=kubernetes-registry.haproxy.com/hapee-ingress   --set controller.image.tag=latest
+ 1598  helm install kubernetes-ingress haproxytech/kubernetes-ingress   --set controller.imageCredentials.registry=kubernetes-registry.haproxy.com   --set controller.imageCredentials.username=dhiraj   --set controller.imageCredentials.password=dhiraj   --set controller.image.repository=kubernetes-registry.haproxy.com/hapee-ingress   --set controller.image.tag=latest
+ 1599  kubectl get pod
+ 1600  helm install kubernetes-ingress haproxytech/kubernetes-ingress   --set controller.imageCredentials.registry=kubernetes-registry.haproxy.com   --set controller.imageCredentials.username=dhiraj   --set controller.imageCredentials.password=dhiraj   --set controller.image.repository=kubernetes-registry.haproxy.com/hapee-ingress   --set controller.image.tag=latest
+ 1601  kubectl get pod
+ 1602  kubectl apply -f https://raw.githubusercontent.com/haproxytech/kubernetes-ingress/v1.4/deploy/haproxy-ingress.yaml
+ 1603  kubectl get pods -A
+ 1604  kubectl get pods 
+ 1605  cd ..
+ 1606  ls
+ 1607  mkdir Blu-green-final
+ 1608  cd Blu-green-final/
+ 1609  nano blue.yaml
+ 1610  kubectl apply -f blue.yaml 
+ 1611  nano blue.yaml 
+ 1612  kubectl apply -f blue.yaml 
+ 1613  cd..
+ 1614  cd ..
+ 1615  ls
+ 1616  cd Blue-Green/
+ 1617  ls
+ 1618  cd ..
+ 1619  cd Dev-OPs/
+ 1620  cd kubernetes/
+ 1621  cd kuber-blue-green-deployment/
+ 1622  ls
+ 1623  cd Blue-Green-Deployment-master
+ 1624  ls
+ 1625  cd demo/
+ 1626  kubectl apply -k ./
+ 1627  kubectl get all --namespace hotel
+ 1628  ls
+ 1629  cat ingresscontrol.yaml 
+ 1630  cat ingresscontrolstage.yaml
+ 1631  nano ingresscontrol.yaml 
+ 1632  nano ingresscontrolstage.yaml 
+ 1633  kubectl apply -k ./
+ 1634  kubectl get all --namespace hotel
+ 1635  nano ingresscontrolstage.yaml 
+ 1636  nano ingresscontrol.yaml 
+ 1637  kubectl apply -k ./
+ 1638  nano ingresscontrol.yaml 
+ 1639  nano ingresscontrolstage.yaml 
+ 1640  kubectl apply -k ./
+ 1641  nano ingresscontrolstage.yaml 
+ 1642  nano ingresscontrol.yaml 
+ 1643  kubectl apply -k ./
+ 1644  kubectl get all --namespace hotel
+ 1645  ls
+ 1646  kubectl apply -f app-v1.yaml 
+ 1647  kubectl apply -f app-v2.yaml 
+ 1648  kubectl get pod
+ 1649  kubectl get all
+ 1650  kubectl delete all
+ 1651  kubectl delete deployment.apps/app
+ 1652  kubectl delete all
+ 1653  kubectl get all
+ 1654  kubetctl get pod
+ 1655  kubectl get pod
+ 1656  kubectl get deployment
+ 1657  kubectl delete deployment details-v1
+ 1658  kubectl delete deployment kubernetes-ingress
+ 1659  kubectl get deployment
+ 1660  kubectl delete deployment kubernetes-ingress-default-backend
+ 1661  kubectl get deployment
+ 1662  kubectl delete deployment 
+ 1663  kubectl get deployment
+ 1664  kubectl version --short --client
+ 1665  aws-iam-authenticator
+ 1666  aws-iam-authenticator help
+ 1667  awscli
+ 1668* 
+ 1669  aws eks update-kubeconfig --name nginx-cluster
+ 1670  cd /root/.kube/config 
+ 1671  cd /root/.kube/
+ 1672  ls
+ 1673  cat config 
+ 1674  cd ..
+ 1675  ls
+ 1676  aws
+ 1677  aws help
+ 1678  aws eks update-kubeconfig --name nginx-cluster
+ 1679  history
